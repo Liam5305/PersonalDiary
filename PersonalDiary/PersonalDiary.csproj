@@ -8,10 +8,4 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="Forms\" />
-    <Folder Include="Classes\" />
-    <Folder Include="Views\" />
-  </ItemGroup>
-
 </Project>
