@@ -29,19 +29,31 @@ namespace PersonalDiary
         // Add Entry Nav
         private void btnNavItem1_Click(object sender, RoutedEventArgs e)
         {
-            
-        }
-        // View Entry Nav
-        private void btnNavItem2_Click(object sender, RoutedEventArgs e)
-        {
-
+            btnAddEntry.Visibility = Visibility.Visible;
+            TxtBoxNewEntry.Visibility = Visibility.Visible;
+            txtDisplayEntries.Visibility = Visibility.Collapsed;
+            TxtBoxDeleteId.Visibility = Visibility.Collapsed;
+            btnDeleteEntry.Visibility = Visibility.Collapsed;
         }
         // Delete Entry Nav
+        private void btnNavItem2_Click(object sender, RoutedEventArgs e)
+        {
+            btnAddEntry.Visibility = Visibility.Collapsed;
+            TxtBoxNewEntry.Visibility = Visibility.Collapsed;
+            txtDisplayEntries.Visibility = Visibility.Collapsed;
+
+            // Show delete controls
+            TxtBoxDeleteId.Visibility = Visibility.Visible;
+            btnDeleteEntry.Visibility = Visibility.Visible;
+        }
+        // View Entry Nav
         private void btnNavItem3_Click(object sender, RoutedEventArgs e)
         {
             btnAddEntry.Visibility = Visibility.Collapsed;
             TxtBoxNewEntry.Visibility = Visibility.Collapsed;
             txtDisplayEntries.Visibility = Visibility.Visible;
+            TxtBoxDeleteId.Visibility = Visibility.Collapsed;
+            btnDeleteEntry.Visibility = Visibility.Collapsed;
 
             int getYear = DateTime.Now.Year;
 
@@ -64,7 +76,7 @@ namespace PersonalDiary
                             count++;
                             int id = reader.GetInt32(0);
                             string entry = reader.GetString(1);
-                            string debugInfo = $"Entry: {entry}";
+                            string debugInfo = $"ID:{id},Entry: {entry}";
 
                             if (uniqueEntries.Add(debugInfo))
                             {
@@ -144,7 +156,7 @@ namespace PersonalDiary
                         TxtBoxNewEntry.Clear();
                     }
                 }
-                    
+
                 catch (SqliteException ex)
                 {
                     MessageBox.Show($"Database error: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -154,6 +166,48 @@ namespace PersonalDiary
                     MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
 
+            }
+        }
+        private void btnDeleteEntry_Click(object sender, RoutedEventArgs e)
+        {
+            if (!int.TryParse(TxtBoxDeleteId.Text, out int id))
+            {
+                MessageBox.Show("Please enter a valid ID number.", "Invalid Input", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            string database_connection = "Data Source=entries.db;";
+            using (var connection = new SqliteConnection(database_connection))
+            {
+                try
+                {
+                    connection.Open();
+
+                    string deleteQuery = "DELETE FROM entries WHERE id = @Id";
+                    using (var deleteCommand = new SqliteCommand(deleteQuery, connection))
+                    {
+                        deleteCommand.Parameters.AddWithValue("@Id", id);
+                        int rowsAffected = deleteCommand.ExecuteNonQuery();
+
+                        if (rowsAffected > 0)
+                        {
+                            MessageBox.Show("Entry deleted successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                            TxtBoxDeleteId.Clear();
+                        }
+                        else
+                        {
+                            MessageBox.Show("No entry found with the specified ID.", "Not Found", MessageBoxButton.OK, MessageBoxImage.Information);
+                        }
+                    }
+                }
+                catch (SqliteException ex)
+                {
+                    MessageBox.Show($"Database error: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
         }
     }

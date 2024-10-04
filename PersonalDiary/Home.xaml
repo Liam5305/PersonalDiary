@@ -36,14 +36,18 @@
                 <DropShadowEffect/>
             </Button.Effect>
         </Button>
-        <ContentControl x:Name="NewEntryContent" Content="Testing" HorizontalAlignment="Left" Margin="228,3,0,0" VerticalAlignment="Top" Height="459" Width="573" Visibility="Hidden"/>
-        <TextBox x:Name="TxtBoxNewEntry" HorizontalAlignment="Left" Margin="243,23,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="558" Height="249" FontFamily="Bahnschrift SemiLight" FontSize="14" Cursor="Pen" Visibility="Visible"/>
-        <Button x:Name="btnAddEntry" Content="Add Entry" HorizontalAlignment="Left" Margin="243,277,0,0" VerticalAlignment="Top" Height="37" Width="114" FontSize="16" FontFamily="Bahnschrift SemiLight" Cursor="Hand" Visibility="Visible" Click="btnAddEntry_Click">
+        <TextBox x:Name="TxtBoxNewEntry" HorizontalAlignment="Left" Margin="243,23,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="526" Height="249" FontFamily="Bahnschrift SemiLight" FontSize="14" Cursor="Pen" Visibility="Collapsed"/>
+        <Button x:Name="btnAddEntry" Content="Add Entry" HorizontalAlignment="Left" Margin="243,277,0,0" VerticalAlignment="Top" Height="37" Width="114" FontSize="16" FontFamily="Bahnschrift SemiLight" Cursor="Hand" Visibility="Collapsed" Click="btnAddEntry_Click">
             <Button.Effect>
                 <DropShadowEffect/>
             </Button.Effect>
         </Button>
         <TextBlock x:Name="txtDisplayEntries" HorizontalAlignment="Left" Margin="243,23,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="249" Width="558" Visibility="Collapsed"/>
-
+        <TextBox x:Name="TxtBoxDeleteId" HorizontalAlignment="Left" Margin="243,23,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="526" Height="249" FontFamily="Bahnschrift SemiLight" FontSize="14" Cursor="Pen" Visibility="Collapsed"/>
+        <Button x:Name="btnDeleteEntry" Content="Delete Entry" HorizontalAlignment="Left" Margin="243,277,0,0" VerticalAlignment="Top" Height="37" Width="114" FontSize="16" FontFamily="Bahnschrift SemiLight" Cursor="Hand" Visibility="Collapsed" Click="btnDeleteEntry_Click">
+            <Button.Effect>
+                <DropShadowEffect/>
+            </Button.Effect>
+        </Button>
     </Grid>
 </Window>
