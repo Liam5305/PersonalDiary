@@ -5,11 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PersonalDiary"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Personal Diary | Login" Height="389" Width="332" ResizeMode="NoResize" Icon="/DiaryHomePage.png" WindowStartupLocation="CenterScreen">
     <Window.Effect>
         <DropShadowEffect/>
     </Window.Effect>
     <Grid>
+        <Button x:Name="btnLogin" Content="Login" HorizontalAlignment="Left" Margin="86,264,0,0" VerticalAlignment="Top" Height="30" Width="80" Click="btnLogin_Click" Cursor="Hand"/>
+        <Button x:Name="btnExit" Content="Exit App" HorizontalAlignment="Left" Margin="171,264,0,0" VerticalAlignment="Top" Height="30" Width="80" Click="btnExit_Click" Cursor="Hand"/>
+        <Label x:Name="labelDate" Content="Label" HorizontalAlignment="Left" Margin="10,322,0,0" VerticalAlignment="Top" Width="64"/>
+        <Image HorizontalAlignment="Left" Height="210" Margin="49,10,0,0" VerticalAlignment="Top" Width="217" Source="/DiaryHomePage.png"/>
 
     </Grid>
 </Window>
