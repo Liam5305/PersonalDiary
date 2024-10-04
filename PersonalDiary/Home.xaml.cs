@@ -76,7 +76,7 @@ namespace PersonalDiary
                             count++;
                             int id = reader.GetInt32(0);
                             string entry = reader.GetString(1);
-                            string debugInfo = $"ID:{id},Entry: {entry}";
+                            string debugInfo = $"Entry {id}: {entry}";
 
                             if (uniqueEntries.Add(debugInfo))
                             {
